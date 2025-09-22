@@ -15,6 +15,15 @@ export const faqDatabase: FAQItem[] = [
     keywords: ["hours", "open", "close", "time", "schedule", "business", "office", "working"],
     category: "general"
   },
+  
+  // Example: Add your custom FAQ
+  {
+    id: "news-updates",
+    question: "How do I get the latest news updates?",
+    answer: "You can get the latest news by asking me 'news' or 'latest news'. I'll fetch the most recent articles from our news feed.",
+    keywords: ["news", "updates", "latest", "articles", "feed", "current", "recent"],
+    category: "news"
+  },
   {
     id: "contact",
     question: "How can I contact you?",

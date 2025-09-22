@@ -2,6 +2,7 @@ import { createTool } from "@mastra/core/tools";
 import type { IMastraLogger } from "@mastra/core/logger";
 import { z } from "zod";
 import { FAQMatcher } from "../data/faqData";
+import { newsFeedTool, formatNewsResponseTool } from "./newsFeedTool";
 
 const faqMatcher = new FAQMatcher();
 
@@ -9,6 +10,12 @@ const faqMatcher = new FAQMatcher();
 function isHelpRequest(message: string): boolean {
   const helpKeywords = ['help', 'menu', 'options', 'categories', 'topics', 'what can you do', 'commands', 'start'];
   return helpKeywords.some(keyword => message.includes(keyword));
+}
+
+// Helper function to detect news requests
+function isNewsRequest(message: string): boolean {
+  const newsKeywords = ['news', 'latest news', 'current news', 'headlines', 'updates', 'feed', 'articles'];
+  return newsKeywords.some(keyword => message.includes(keyword));
 }
 
 // Helper function to extract category requests
@@ -54,8 +61,9 @@ function handleHelpRequest(logger?: IMastraLogger): any {
   response += "\n*How to use:*\n";
   response += "• Just ask a question naturally\n";
   response += "• Type 'category:[name]' for specific topics\n";
-  response += "• Ask about hours, contact, pricing, support, etc.\n\n";
-  response += "Example: \"What are your hours?\" or \"category:pricing\"";
+  response += "• Ask about hours, contact, pricing, support, etc.\n";
+  response += "• Type 'news' for latest news updates\n\n";
+  response += "Example: \"What are your hours?\" or \"category:pricing\" or \"news\"";
 
   logger?.info('✅ [FAQ Router] Generated help response', { 
     categoriesCount: categories.length 
@@ -66,6 +74,53 @@ function handleHelpRequest(logger?: IMastraLogger): any {
     responseType: "help" as const,
     matchedCategories: categories,
   };
+}
+
+// Handle news requests
+async function handleNewsRequest(logger?: IMastraLogger): Promise<any> {
+  logger?.info('📝 [FAQ Router] Processing news request');
+  
+  try {
+    // Fetch news from the feed
+    const newsResult = await newsFeedTool.execute({
+      context: { source: "default", limit: 5 },
+      mastra: { getLogger: () => logger } as any
+    });
+    
+    if (newsResult.error) {
+      logger?.error('❌ [FAQ Router] News fetch failed', { error: newsResult.error });
+      return {
+        response: "📰 Sorry, I couldn't fetch the latest news right now. Please try again later.",
+        responseType: "default" as const,
+      };
+    }
+    
+    // Format the news response
+    const formatResult = await formatNewsResponseTool.execute({
+      context: { 
+        articles: newsResult.articles,
+        source: newsResult.source 
+      },
+      mastra: { getLogger: () => logger } as any
+    });
+    
+    logger?.info('✅ [FAQ Router] Successfully processed news request', { 
+      articleCount: newsResult.count,
+      source: newsResult.source 
+    });
+    
+    return {
+      response: formatResult.formattedResponse,
+      responseType: "news" as const,
+    };
+    
+  } catch (error) {
+    logger?.error('❌ [FAQ Router] Error processing news request', { error });
+    return {
+      response: "📰 Sorry, I encountered an error while fetching news. Please try again later.",
+      responseType: "default" as const,
+    };
+  }
 }
 
 // Handle category-specific requests
@@ -191,14 +246,20 @@ export const routeFaqRequestTool = createTool({
         return handleHelpRequest(logger);
       }
 
-      // Route 2: Category-specific requests (e.g., "category:pricing" or "show pricing")
+      // Route 2: News requests
+      if (isNewsRequest(normalizedMessage)) {
+        logger?.info('📝 [FAQ Router] Detected news request');
+        return await handleNewsRequest(logger);
+      }
+
+      // Route 3: Category-specific requests (e.g., "category:pricing" or "show pricing")
       const categoryRequest = extractCategoryRequest(normalizedMessage);
       if (categoryRequest) {
         logger?.info('📝 [FAQ Router] Detected category request', { category: categoryRequest });
         return handleCategoryRequest(categoryRequest, logger);
       }
 
-      // Route 3: General FAQ search
+      // Route 4: General FAQ search
       logger?.info('📝 [FAQ Router] Processing as general FAQ search');
       return handleFaqSearch(normalizedMessage, logger);
 
