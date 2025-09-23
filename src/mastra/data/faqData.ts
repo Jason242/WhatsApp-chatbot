@@ -7,114 +7,128 @@ export interface FAQItem {
 }
 
 export const faqDatabase: FAQItem[] = [
-  // General Information
+  // Calendar & Schedule Information
   {
-    id: "hours",
-    question: "What are your business hours?",
-    answer: "Our business hours are Monday through Friday, 9:00 AM to 6:00 PM EST. We're closed on weekends and major holidays.",
-    keywords: ["hours", "open", "close", "time", "schedule", "business", "office", "working"],
+    id: "school-hours",
+    question: "What are MOKI's hours?",
+    answer: "MOKI operates:\n• Monday to Friday: 8:00 AM - 3:00 PM\n• Early drop-off: 7:30 AM (additional fee)\n• Extended care: 3:00 PM - 6:00 PM (additional fee)\n• Closed on weekends and public holidays",
+    keywords: ["hours", "schedule", "time", "open", "close", "drop-off", "pick-up", "extended", "care"],
+    category: "calendar"
+  },
+  {
+    id: "holiday-schedule",
+    question: "When are school holidays and breaks?",
+    answer: "MOKI holidays and early closing days are announced every Monday at 12:00 PM GMT+2 for that week.\n\nTypical holiday schedule:\n• Summer break: June 15 - August 20\n• Winter break: December 20 - January 5\n• Spring break: March 15 - March 22\n• Public holidays: New Year's Day, MLK Day, Presidents' Day, Memorial Day, Independence Day, Labor Day, Thanksgiving, Christmas\n\nEarly closing days and schedule changes are announced via WhatsApp every Monday at 12:00 PM GMT+2.",
+    keywords: ["holidays", "breaks", "vacation", "closed", "summer", "winter", "spring", "calendar", "dates", "announcement", "monday", "early closing", "schedule changes"],
+    category: "calendar"
+  },
+  {
+    id: "daily-schedule",
+    question: "What does a typical day look like?",
+    answer: "Daily MOKI schedule:\n• 8:00 AM: Arrival and morning activities\n• 8:30 AM: Circle time and announcements\n• 9:00 AM: Learning centers and activities\n• 10:00 AM: Outdoor play\n• 10:30 AM: Snack time\n• 11:00 AM: Group lessons\n• 12:00 PM: Lunch\n• 12:30 PM: Quiet time/nap\n• 1:30 PM: Afternoon activities\n• 2:30 PM: Free play and preparation for pickup\n• 3:00 PM: Dismissal",
+    keywords: ["schedule", "daily", "routine", "activities", "play", "nap", "lunch", "snack", "circle time"],
+    category: "calendar"
+  },
+
+  // Events & Activities
+  {
+    id: "upcoming-events",
+    question: "What events are coming up?",
+    answer: "Upcoming MOKI events this month:\n• Parent-Teacher Conferences: March 10-15\n• Spring Festival: March 22\n• Book Fair: March 25-29\n• Field Trip to Local Farm: April 5\n• Mother's Day Celebration: May 10\n\nEvent announcements are sent every Monday at 12:00 PM GMT+2. Check our WhatsApp group for the latest updates!",
+    keywords: ["events", "upcoming", "activities", "festival", "conference", "field trip", "celebration", "party", "moki", "announcement"],
+    category: "events"
+  },
+  {
+    id: "field-trips",
+    question: "What field trips are planned?",
+    answer: "Planned field trips this semester:\n• Local Library: March 15\n• Children's Museum: April 5\n• Nature Center: April 20\n• Fire Station Visit: May 8\n\nPermission slips will be sent home 2 weeks before each trip. All trips require parental consent and emergency contact information.",
+    keywords: ["field trip", "excursion", "museum", "library", "nature", "fire station", "permission", "consent"],
+    category: "events"
+  },
+  {
+    id: "parent-events",
+    question: "Are there events for parents?",
+    answer: "Parent events this semester:\n• Monthly Coffee & Chat: First Friday of each month, 8:30 AM\n• Parent-Teacher Conferences: March 10-15\n• Spring Festival: March 22 (family event)\n• Volunteer Appreciation Lunch: May 15\n• End-of-Year Celebration: June 10\n\nAll parents are welcome to attend! RSVP required for some events.",
+    keywords: ["parent", "coffee", "chat", "conference", "volunteer", "appreciation", "celebration", "family"],
+    category: "events"
+  },
+
+  // General FAQs
+  {
+    id: "contact-info",
+    question: "How can I contact MOKI?",
+    answer: "MOKI Contact Information:\n• Main Office: +1 (555) 123-MOKI\n• Director Email: director@moki.edu\n• Teacher Line: +1 (555) 123-TEACH\n• Emergency Line: +1 (555) 123-HELP\n• Address: 123 Learning Lane, Education City, EC 12345\n• Office Hours: 7:30 AM - 5:30 PM, Monday-Friday\n\nAll announcements and updates are sent every Monday at 12:00 PM GMT+2",
+    keywords: ["contact", "phone", "email", "address", "office", "director", "teacher", "emergency", "moki", "announcements"],
     category: "general"
   },
-  
-  // Example: Add your custom FAQ
   {
-    id: "news-updates",
-    question: "How do I get the latest news updates?",
-    answer: "You can get the latest news by asking me 'news' or 'latest news'. I'll fetch the most recent articles from our news feed.",
-    keywords: ["news", "updates", "latest", "articles", "feed", "current", "recent"],
-    category: "news"
+    id: "what-to-bring",
+    question: "What should my child bring to school?",
+    answer: "Daily essentials:\n• Backpack with name label\n• Lunch box (if bringing lunch)\n• Water bottle\n• Change of clothes (in a labeled bag)\n• Comfort item for nap time (optional)\n\nPlease label everything with your child's name. We provide snacks, but you can send special treats for celebrations.",
+    keywords: ["bring", "backpack", "lunch", "clothes", "water bottle", "label", "snack", "supplies"],
+    category: "general"
   },
   {
-    id: "contact",
-    question: "How can I contact you?",
-    answer: "You can reach us via:\n• Email: support@company.com\n• Phone: (555) 123-4567\n• Live chat on our website\n• This WhatsApp number for quick questions",
-    keywords: ["contact", "phone", "email", "reach", "support", "call", "message", "help"],
-    category: "contact"
+    id: "sick-policy",
+    question: "What is the sick child policy?",
+    answer: "Sick child policy:\n• Children with fever (100.4°F+) must stay home\n• 24-hour fever-free before returning\n• No school with vomiting or diarrhea\n• Contagious illnesses require doctor's note to return\n• We'll call you immediately if your child becomes ill at school\n\nYour child's health and the health of all children is our priority.",
+    keywords: ["sick", "fever", "illness", "policy", "health", "contagious", "doctor", "note", "temperature"],
+    category: "general"
   },
   {
-    id: "location",
-    question: "Where are you located?",
-    answer: "Our main office is located at:\n123 Business Street\nSuite 456\nCity, State 12345\n\nWe also have remote team members available to assist you.",
-    keywords: ["location", "address", "where", "office", "building", "visit", "directions"],
+    id: "pickup-dropoff",
+    question: "What are the pickup and drop-off procedures?",
+    answer: "Pickup and drop-off procedures:\n• Drop-off: 8:00-8:30 AM at main entrance\n• Pickup: 3:00-3:30 PM at same entrance\n• Authorized pickup persons must show ID\n• Late pickup fee: $5 per 15 minutes after 3:30 PM\n• Emergency contacts must be on file\n• Notify us if someone else will pick up your child",
+    keywords: ["pickup", "drop-off", "procedure", "authorized", "ID", "late", "fee", "emergency", "contact"],
     category: "general"
   },
 
-  // Services and Resources
+  // Emergency & Safety
   {
-    id: "services",
-    question: "What services do you offer?",
-    answer: "We offer a comprehensive range of services including:\n• Consulting and strategy\n• Technical support\n• Training and education\n• Custom solutions\n• Ongoing maintenance and support",
-    keywords: ["services", "offer", "provide", "do", "what", "help", "solutions", "consulting"],
-    category: "services"
+    id: "emergency-procedures",
+    question: "What are the emergency procedures?",
+    answer: "MOKI Emergency Procedures:\n• Fire drills: Monthly practice\n• Lockdown drills: Quarterly practice\n• Emergency contact: +1 (555) 123-HELP\n• Weather closures: Follow school district announcements\n• Medical emergencies: 911 + notify parents immediately\n• All staff are CPR and First Aid certified\n\nEmergency updates sent via WhatsApp immediately when needed.",
+    keywords: ["emergency", "fire", "lockdown", "weather", "medical", "CPR", "first aid", "safety", "drill", "moki"],
+    category: "emergency"
   },
   {
-    id: "pricing",
-    question: "What are your pricing options?",
-    answer: "We offer flexible pricing plans:\n• Basic Plan: $99/month\n• Professional Plan: $199/month\n• Enterprise Plan: Custom pricing\n\nContact us for a detailed quote based on your specific needs.",
-    keywords: ["price", "cost", "pricing", "plans", "money", "fees", "rate", "charge", "payment"],
-    category: "pricing"
-  },
-  {
-    id: "getting-started",
-    question: "How do I get started?",
-    answer: "Getting started is easy:\n1. Schedule a free consultation\n2. We'll assess your needs\n3. Choose the right plan for you\n4. Begin implementation\n\nContact us to schedule your consultation today!",
-    keywords: ["start", "begin", "getting started", "how", "first", "initial", "new", "setup"],
-    category: "onboarding"
+    id: "medication-policy",
+    question: "What is the medication policy?",
+    answer: "Medication policy:\n• Prescription medications require doctor's authorization\n• Over-the-counter medications need parental consent\n• All medications must be in original containers\n• Administered by trained staff only\n• Medication log maintained for each dose\n• EpiPens and inhalers: Parents must provide and train staff\n\nForms available at the main office.",
+    keywords: ["medication", "prescription", "over-the-counter", "authorization", "consent", "EpiPen", "inhaler", "doctor"],
+    category: "emergency"
   },
 
-  // Support and Documentation
+  // Policies & Procedures
   {
-    id: "support",
-    question: "What kind of support do you provide?",
-    answer: "We provide comprehensive support including:\n• 24/7 technical assistance\n• Email and phone support\n• Live chat during business hours\n• Detailed documentation and guides\n• Video tutorials and training sessions",
-    keywords: ["support", "help", "assistance", "technical", "documentation", "guides", "training"],
-    category: "support"
+    id: "tuition-fees",
+    question: "What are the tuition and fees?",
+    answer: "Current tuition and fees:\n• Monthly tuition: $800\n• Registration fee: $150 (annual)\n• Early drop-off: $5/day\n• Extended care: $10/day\n• Field trip fees: $15-25 per trip\n• Late pickup: $5 per 15 minutes\n\nPayment due by the 5th of each month. Sibling discounts available.",
+    keywords: ["tuition", "fees", "payment", "registration", "discount", "sibling", "monthly", "annual"],
+    category: "policies"
   },
   {
-    id: "documentation",
-    question: "Where can I find documentation?",
-    answer: "Our documentation is available at:\n• docs.company.com\n• Help section on our website\n• PDF guides (downloadable)\n• Video tutorial library\n\nIf you can't find what you're looking for, contact our support team.",
-    keywords: ["documentation", "docs", "manual", "guide", "instructions", "tutorial", "help", "how-to"],
-    category: "resources"
-  },
-  {
-    id: "training",
-    question: "Do you offer training?",
-    answer: "Yes! We offer various training options:\n• Live online training sessions\n• Self-paced video courses\n• Custom training for teams\n• Certification programs\n• One-on-one coaching\n\nContact us to learn more about our training programs.",
-    keywords: ["training", "learn", "course", "education", "teach", "session", "workshop", "certification"],
-    category: "training"
+    id: "dress-code",
+    question: "Is there a dress code?",
+    answer: "MOKI dress code guidelines:\n• Comfortable, play-appropriate clothing\n• Closed-toe shoes (no flip-flops)\n• Extra clothes in backpack\n• Label all items with child's name\n• No toys from home (except comfort items)\n• Weather-appropriate outdoor wear\n\nWe encourage independence, so easy-to-manage clothing is best!",
+    keywords: ["dress", "clothing", "shoes", "clothes", "play", "comfortable", "weather", "label", "moki"],
+    category: "policies"
   },
 
-  // Technical Resources
+  // Parent Resources
   {
-    id: "requirements",
-    question: "What are the system requirements?",
-    answer: "Minimum system requirements:\n• Operating System: Windows 10+ / macOS 10.14+ / Linux\n• RAM: 4GB minimum, 8GB recommended\n• Storage: 500MB available space\n• Internet connection required\n• Modern web browser (Chrome, Firefox, Safari, Edge)",
-    keywords: ["requirements", "system", "minimum", "specs", "compatibility", "browser", "operating"],
-    category: "technical"
+    id: "parent-contact-list",
+    question: "How can I get the parents contact list?",
+    answer: "MOKI Parents Contact List:\n• Available through the main office\n• Email director@moki.edu to request access\n• Includes phone numbers and email addresses\n• Updated monthly with new families\n• Consent required from all parents before sharing\n• Used for playdates, carpooling, and emergency contact\n\nContact the office to add your information to the list.",
+    keywords: ["parent", "contact", "list", "phone", "email", "directory", "playdate", "carpool", "emergency", "moki"],
+    category: "general"
   },
   {
-    id: "troubleshooting",
-    question: "How do I troubleshoot common issues?",
-    answer: "For common issues, try these steps:\n1. Clear your browser cache\n2. Check your internet connection\n3. Restart the application\n4. Update to the latest version\n\nIf issues persist, contact our support team with details about the problem.",
-    keywords: ["troubleshoot", "problem", "issue", "error", "fix", "broken", "not working", "help"],
-    category: "technical"
-  },
-
-  // Account and Billing
-  {
-    id: "account",
-    question: "How do I manage my account?",
-    answer: "You can manage your account through:\n• Our online portal at portal.company.com\n• Account settings in the application\n• Contacting our customer service team\n\nYou can update billing info, change plans, and view usage history.",
-    keywords: ["account", "manage", "settings", "portal", "profile", "login", "dashboard"],
-    category: "account"
-  },
-  {
-    id: "billing",
-    question: "How does billing work?",
-    answer: "Billing details:\n• Monthly or annual billing cycles\n• Automatic payment via credit card\n• Invoices sent via email\n• 30-day money-back guarantee\n• No setup fees or hidden costs\n\nView your billing history anytime in your account portal.",
-    keywords: ["billing", "payment", "invoice", "charge", "subscription", "refund", "money", "card"],
-    category: "billing"
+    id: "announcement-schedule",
+    question: "When are announcements made?",
+    answer: "MOKI Announcement Schedule:\n• Every Monday at 12:00 PM GMT+2\n• Sent via WhatsApp group\n• Includes: holiday schedules, early closing days, event updates\n• Emergency announcements sent immediately\n• Weekly newsletter with detailed information\n• All parents automatically receive announcements\n\nMake sure your WhatsApp notifications are enabled!",
+    keywords: ["announcement", "monday", "12:00", "GMT+2", "whatsapp", "holiday", "early closing", "schedule", "newsletter", "moki"],
+    category: "general"
   }
 ];
 
@@ -153,10 +167,12 @@ export class FAQMatcher {
    */
   getDefaultResponse(): string {
     return "I couldn't find a specific answer to your question. Here are some ways to get help:\n\n" +
-           "• Contact our support team at support@company.com\n" +
-           "• Call us at (555) 123-4567 during business hours\n" +
-           "• Visit our documentation at docs.company.com\n" +
-           "• Ask me about: hours, contact, services, pricing, support, or training";
+           "• Contact MOKI main office at +1 (555) 123-MOKI\n" +
+           "• Email the director at director@moki.edu\n" +
+           "• Call our teacher line at +1 (555) 123-TEACH\n" +
+           "• Ask me about: calendar, events, policies, emergency procedures, or general questions\n\n" +
+           "Popular topics: MOKI hours, holidays, events, field trips, pickup/dropoff, sick policy, tuition, parent contact list, and announcements!\n\n" +
+           "Remember: All announcements are sent every Monday at 12:00 PM GMT+2!";
   }
 
   /**

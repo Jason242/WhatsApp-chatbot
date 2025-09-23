@@ -5,6 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "mastra dev",
+    "start": "node start-with-qr-server.cjs",
+    "start:cjs": "node start.cjs",
+    "start:qr": "node start-with-qr-server.cjs",
     "build": "mastra build",
     "check": "tsc",
     "check:format": "prettier --check '**/*.ts'",
@@ -36,6 +39,7 @@
     "ai": "^4.3.16",
     "dotenv": "^17.2.0",
     "exa-js": "^1.8.17",
+    "express": "^5.1.0",
     "inngest": "^3.40.2",
     "inngest-cli": "^1.11.5",
     "pino": "^9.9.4",

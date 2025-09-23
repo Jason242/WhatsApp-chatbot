@@ -125,7 +125,7 @@ export const mastra = new Mastra({
       {
         path: "/api/inngest",
         method: "ALL",
-        createHandler: async ({ mastra }) => inngestServe({ mastra, inngest }),
+        createHandler: async () => inngestServe,
         // The inngestServe function integrates Mastra workflows with Inngest by:
         // 1. Creating Inngest functions for each workflow with unique IDs (workflow.${workflowId})
         // 2. Setting up event handlers that:

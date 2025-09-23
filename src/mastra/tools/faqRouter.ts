@@ -1,5 +1,6 @@
 import { createTool } from "@mastra/core/tools";
 import type { IMastraLogger } from "@mastra/core/logger";
+import { RuntimeContext } from "@mastra/core/di";
 import { z } from "zod";
 import { FAQMatcher } from "../data/faqData";
 import { newsFeedTool, formatNewsResponseTool } from "./newsFeedTool";
@@ -84,7 +85,8 @@ async function handleNewsRequest(logger?: IMastraLogger): Promise<any> {
     // Fetch news from the feed
     const newsResult = await newsFeedTool.execute({
       context: { source: "default", limit: 5 },
-      mastra: { getLogger: () => logger } as any
+      mastra: { getLogger: () => logger } as any,
+      runtimeContext: new RuntimeContext(),
     });
     
     if (newsResult.error) {
@@ -101,7 +103,8 @@ async function handleNewsRequest(logger?: IMastraLogger): Promise<any> {
         articles: newsResult.articles,
         source: newsResult.source 
       },
-      mastra: { getLogger: () => logger } as any
+      mastra: { getLogger: () => logger } as any,
+      runtimeContext: new RuntimeContext(),
     });
     
     logger?.info('✅ [FAQ Router] Successfully processed news request', { 

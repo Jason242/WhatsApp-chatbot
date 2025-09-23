@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  moki-whatsapp-bot:
+    build: .
+    container_name: moki-whatsapp-bot
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./session-data:/app/.wwebjs_auth
+      - ./logs:/app/logs
+    environment:
+      - NODE_ENV=production
+      - QR_SERVER_PORT=8081
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
